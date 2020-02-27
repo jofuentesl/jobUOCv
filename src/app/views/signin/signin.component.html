@@ -1,3 +1,17 @@
-<p>
-  signin works!
-</p>
+<section>
+<div class="img"> 
+  <img src="/src/assets/img/logo-uoc.jpg" alt="logo UOC">
+</div>
+<form [FormGroup]="loginForm" (ngSubmint)="signin()">
+  <label for="email">email</label>
+  <input type="text" name="email" id="email" [formControl]="email">
+  <br>
+
+  <label for="password">password</label>
+  <input type="password" name="password" id="password" [formControl]="password">
+  <br>
+
+  <button type="submit">Entrar</button>
+  <button>Recuperar contraseña</button>
+</form>
+</section>
