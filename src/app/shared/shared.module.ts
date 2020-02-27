@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+
+
 /*
 import { TranslateModule } from '@ngx-translate/core';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar'; */
@@ -19,7 +21,10 @@ import { AppComfirmComponent } from './services/app-confirm/app-confirm.componen
 const classesToInclude = [AppComfirmComponent];
 
 @NgModule({
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule,
+            FormsModule,
+            RouterModule
+          ],
 
   providers: [AppConfirmService],
   entryComponents: [AppComfirmComponent],
