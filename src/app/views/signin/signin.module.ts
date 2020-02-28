@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { SigninRoutingModule } from './signin-routing.module';
 import { SigninComponent } from './signin.component';
 
+import { SharedModule } from '../../shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -11,7 +13,10 @@ import { SigninComponent } from './signin.component';
   declarations: [SigninComponent],
   imports: [
     CommonModule,
-    SigninRoutingModule
+    SigninRoutingModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SigninModule { }

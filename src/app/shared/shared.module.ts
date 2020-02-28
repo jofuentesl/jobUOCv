@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { ReactiveFormsModule} from '@angular/forms';
 
 /*
 import { TranslateModule } from '@ngx-translate/core';
@@ -23,7 +24,7 @@ const classesToInclude = [AppComfirmComponent];
 @NgModule({
   imports: [CommonModule,
             FormsModule,
-            RouterModule
+            RouterModule, ReactiveFormsModule
           ],
 
   providers: [AppConfirmService],

@@ -1,17 +1,43 @@
 <section>
 <div class="img"> 
-  <img src="/src/assets/img/logo-uoc.jpg" alt="logo UOC">
+  <img src='/assets/img/uoc.png' alt="logo UOC">
 </div>
-<form [FormGroup]="loginForm" (ngSubmint)="signin()">
+<form [formGroup]="loginForm" (ngSubmit)="signin()">
   <label for="email">email</label>
-  <input type="text" name="email" id="email" [formControl]="email">
+  
+  <input type="text" 
+    name="email" 
+    id="email" 
+    [formControl]="email">
+    <div [hidden]="email.valid || email.untouched">
+      <div>
+        Hay un error en tu email
+      </div>
+      <div [hidden]="!email.hasError('required')">
+        La dirección de email es obligatoria.
+      </div>
+      <div [hidden]="!email.hasError('validateEmail')">
+          El formato de la dirección de correo electrónico, no es correcto
+      </div>
+    </div>
   <br>
-
   <label for="password">password</label>
-  <input type="password" name="password" id="password" [formControl]="password">
+  <input 
+    type="password" 
+    name="password" 
+    id="password" 
+    [formControl]="password">
+    <div [hidden]="password.valid || password.untouched">
+      <div>
+        Hay un error en tu contraseña
+      </div>
+    <div [hidden]="!password.hasError('required')">
+      La constraseña es obligatoria
+    </div>
+  </div> 
   <br>
 
-  <button type="submit">Entrar</button>
+  <button type="submit" [disabled]="!loginForm.valid">Entrar</button>
   <button>Recuperar contraseña</button>
 </form>
 </section>

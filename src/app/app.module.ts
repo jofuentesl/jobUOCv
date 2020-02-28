@@ -7,15 +7,18 @@ import { rootRouterConfig } from './app-routing';
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FakeBackendService } from './shared/inmemory-db/inmemory-db.service';
-import { ReactiveFormsModule } from '@angular/forms';
+/*import { FormsModule, ReactiveFormsModule } from '@angular/forms';*/
+
+
 
 @NgModule({
   imports: [
     SharedModule,
     CoreModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
-    InMemoryWebApiModule.forRoot(FakeBackendService),
-    ReactiveFormsModule
+    InMemoryWebApiModule.forRoot(FakeBackendService)/*,
+    FormsModule,
+    ReactiveFormsModule*/
   ],
   declarations: [AppComponent],
   providers: [],
