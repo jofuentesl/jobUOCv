@@ -16,9 +16,7 @@ import { FakeBackendService } from './shared/inmemory-db/inmemory-db.service';
     SharedModule,
     CoreModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
-    InMemoryWebApiModule.forRoot(FakeBackendService)/*,
-    FormsModule,
-    ReactiveFormsModule*/
+    InMemoryWebApiModule.forRoot(FakeBackendService)
   ],
   declarations: [AppComponent],
   providers: [],
