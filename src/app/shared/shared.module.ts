@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ReactiveFormsModule} from '@angular/forms';
-import { AdminLayoutComponent } from './components/layouts/admin-layout/admin-layout';
+import { AdminLayoutModule } from './components/layouts/admin-layout/admin-layout.module';
 
 /*
 import { TranslateModule } from '@ngx-translate/core';
@@ -28,7 +28,7 @@ const classesToInclude = [AppComfirmComponent];
   imports: [CommonModule,
             FormsModule,
             RouterModule, ReactiveFormsModule,
-            AdminLayoutComponent
+            AdminLayoutModule
           ],
 
   providers: [AppConfirmService],
