@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ReactiveFormsModule} from '@angular/forms';
-import { AdminLayoutModule } from './components/layouts/admin-layout/admin-layout.module';
+
 
 /*
 import { TranslateModule } from '@ngx-translate/core';
@@ -19,16 +19,16 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar'; */
 // SERVICES
 import { AppConfirmService } from './services/app-confirm/app-confirm.service';
 import { AppComfirmComponent } from './services/app-confirm/app-confirm.component';
+import { AdminLayoutComponent } from './components/layouts/admin-layout/admin-layout.component';
 
 
 
-const classesToInclude = [AppComfirmComponent];
+const classesToInclude = [AppComfirmComponent, AdminLayoutComponent];
 
 @NgModule({
   imports: [CommonModule,
             FormsModule,
-            RouterModule, ReactiveFormsModule,
-            AdminLayoutModule
+            RouterModule, ReactiveFormsModule
           ],
 
   providers: [AppConfirmService],
