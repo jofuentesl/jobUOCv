@@ -1,1 +1,22 @@
-<p>student works!</p>
+<section>
+<h1>Datos personales</h1>
+<div>
+    <form [formGroup]="userForm" (ngSubmit)="update()">
+        <label for="name">Nombre</label>
+        <input type="text" 
+            name="name" 
+            id="name" 
+            [formControl]="name">
+            <div [hidden]="name.valid || name.untouched">
+            <div>
+                Hay un error en tu email
+            </div>
+            <div [hidden]="!name.hasError('required')">
+                El campo nombre es obligatorio.
+            </div>
+            
+            </div>
+            <button type="submit" [disabled]="!userForm.valid">Guardar</button>   
+    </form>
+</div>
+

@@ -5,8 +5,6 @@ import { User } from '../models/user.model';
 import { Observable } from 'rxjs';
 
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +19,8 @@ export class DataService {
 
   getUsers():Observable<any[]> {
     return this.httpClient.get<any[]>(this.SERVER_URL+ 'users').pipe(tap(data =>
-      this.currentUser = data));
-  }
+      this.currentUser = data)
+      );
+      
+    }
 }

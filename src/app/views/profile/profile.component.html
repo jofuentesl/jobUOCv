@@ -1,3 +1,82 @@
-<p>
-  profile works!
-</p>
+<div>
+<h1>Perfil de usuario</h1>  
+<div class="img"> 
+  <img src='/assets/img/estudiante.png' alt="Foto estudiante">
+</div>
+<div class="datos_estudiante" *ngFor="let user of currentUser">
+  <div class="datos_personales">
+  <h2>Datos personales</h2>
+    <table >
+      <tr>
+        <td>Nombre:</td>
+        <td>{{user.name}}</td>
+      </tr>
+      <tr>
+        <td>Apellidos:</td>
+        <td>{{user.surname}}</td>
+      </tr>
+      <tr>
+        <td>Fecha de nacimiento:</td>
+        <td>{{user.birthdate}}</td>
+      </tr>
+      <tr>
+        <td>Teléfono:</td>
+        <td>{{user.phone}}</td>
+      </tr>
+      <tr>
+        <td>Tipo documento:</td>
+        <td>
+          <ul>
+            <li>DNI</li>
+            <li>Passaporte</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>Número de documento:</td>
+        <td>46711140R</td>
+      </tr>
+      <tr>
+        <td>Sobre mi:</td>
+        <td>
+          <textarea name="" id="" cols="30" rows="5">{{user.aboutMe}}</textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>Otras competencias:</td>
+        <td>
+          <textarea name="" id="" cols="30" rows="5">{{user.otherCompetences}}</textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>Permiso de conducir:</td>
+        <td>{{user.license}}</td>
+      </tr>
+      <tr>
+        <td>Dirección:</td>
+        <td>{{user.address.street}}</td>
+        <td>{{user.address.province.name}}</td>
+      </tr>
+    </table>
+  <button routerLink="/admin/profile/student">Actualizar</button>
+</div>
+<div class="datos_formacion">  
+<h2>Formación académica</h2> 
+      <table *ngFor="let title of user.studies">
+      <td>{{title.level.name}}</td>
+      <td>{{title.title.name}}</td>
+      <td>{{title.institution.name}}</td>
+      <td>{{title.date}}</td>
+      </table>
+<button routerLink="/admin/profile/studies">Actualizar</button>
+</div>
+<div class="datos_idiomas">  
+  <h2>Idiomas</h2>
+  <table *ngFor="let language of user.languages">
+    <td>{{language.level.name}}</td>
+    <td>{{language.name.name}}</td>
+    <td>{{language.date}}</td>
+  </table> 
+  <button routerLink="/admin/profile/languages">Actualizar</button>
+</div>  
+</div>

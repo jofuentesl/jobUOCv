@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../shared/services/data.service';
 import { SigninService } from './signin.service';
+import { User } from '../../shared/models/user.model';
 
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
@@ -20,6 +21,8 @@ function isEmail(input: FormControl){
 
 export class SigninComponent implements OnInit {
 
+  currentUser : User[] = [];
+
   /*Variables para validar el formulario de login*/
   email     = new FormControl('',[Validators.required, isEmail])
   password  = new FormControl('',[Validators.required])
@@ -34,14 +37,13 @@ export class SigninComponent implements OnInit {
               private formBuilder: FormBuilder) { }
   signin() {
     this.signinService.login({...this.loginForm.value })
-
     }
-
-  
   
   ngOnInit() {
     this.dataService.getUsers().subscribe((data : any[])=>{
       console.log(data);
+      this.currentUser = data;
+      return this.currentUser.map(res => {console.log(res.email)})
       })
 }
 }

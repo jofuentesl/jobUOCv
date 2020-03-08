@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-student',
@@ -7,7 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentComponent implements OnInit {
 
-  constructor() { }
+  /*Variables para validar el formulario de login*/
+    name     = new FormControl('',[Validators.required])
+    surename  = new FormControl('',[Validators.required])
+    
+    userForm: FormGroup = this.formBuilder.group({
+      name: this.name,
+      surename: this.surename
+    });
+  
+  constructor(private formBuilder: FormBuilder) { }
+
+    update(){
+      console.log("hola");
+    }
 
   ngOnInit(): void {
   }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../../shared/models/user.model';
 import { DataService } from '../../shared/services/data.service';
 
@@ -8,17 +9,19 @@ import { DataService } from '../../shared/services/data.service';
 export class SigninService {
 
   currentUser: User[] = [];
-
-  constructor( private dataService:DataService) { }
+  currentId: void[] = [];
+  constructor( private dataService:DataService,
+               private router:Router) { }
 
   login({ email, password }) {
     const user = this.dataService.getUsers().subscribe(data => {
       this.currentUser = data;
-      if(this.currentUser[0].email== email && this.currentUser[0].password== password){
-        console.log("ostia puta");
+      if(this.currentUser.find(n => n.email== email && n.password == password )){
+
+      this.router.navigate(['/admin/profile']);
       }else{
-        console.log("mierda");
-      }
+        alert("El usuario o la contraseña no son correctos")
+      };
     });
   }
 } 
