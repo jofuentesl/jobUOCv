@@ -52,10 +52,22 @@
         <input type="file" name="avatar" id="avatar" />
             
             <br/>
-        <label for="date"> Fecha de nacimiento:</label>
-        <input type="date"
-            name="date"
-            id="date"/>    
+        <label for="dates"> Fecha de nacimiento:</label>
+        <input type="text"
+            name="dates"
+            id="dates"
+            [formControl] ="dates"/>
+            <div [hidden]="dates.valid || dates.untouched">
+                <div>
+                    Hay un error con tu fecha
+                </div>
+                <div [hidden]="!dates.hasError('required')">
+                    El campo fecha es obligatorio
+                </div>
+                <div [hidden]="!dates.hasError('date')">
+                    El formato de fecha no es correcto
+                </div>
+            </div>   
             <br/>
             <label for="phone"> Teléfono:</label>
         <input type="tel"
@@ -63,6 +75,10 @@
             id="phone" 
             [formControl]="phone"/>
             <div [hidden]="phone.valid || phone.untouched">
+                Hay un problema con tu teléfono
+                <div [hidden]="!phone.hasError('required')">
+                    El teléfono es obligatorio
+                </div>
                 <div [hidden]="!phone.hasError('pattern')">
                     El formato del telefono, debe ser numérico.
                 </div>
@@ -74,18 +90,35 @@
             id="phone2" 
             [formControl]="phone2"/>
             <div [hidden]="phone2.valid || phone2.untouched">
+                Hay un problema con tu segundo teléfono
+                <div [hidden]="!phone2.hasError('required')">
+                    El teléfono es obligatorio
+                </div>
                 <div [hidden]="!phone2.hasError('pattern')">
                     El formato del telefono, debe ser numérico.
                 </div>
             </div> 
             <br/>
-            <label for="document"> Tipo de documento:</label>
-            <select id="document">
+            <label for="n_document"> Tipo de documento:</label>
+            <select id="n_document"
+            name="n_document"
+            id="n_document"
+            [formControl]="n_document">
+                <option value=""></option>
                 <option value="NIF">NIF</option>
                 <option value="NIE">NIE</option>
                 <option value="Pasaporte">Pasaporte</option>
                 <option value="Otro">Otro</option>
             </select>
+            <div [hidden]="n_document.valid || n_document.untouched">
+                Hay un problema con la selección de tu documento
+                <div [hidden]="!n_document.hasError('required')">
+                    El teléfono es obligatorio
+                </div>
+                <div [hidden]="!n_document.hasError('pattern')">
+                    El formato del telefono, debe ser numérico.
+                </div>
+            </div> 
             <br/>
             <label for="n_document"> Número documento:</label>
             <input type="text"
@@ -96,27 +129,46 @@
             <label for="address">Dirección:</label>
             <input type="text"
             name="address"
-            id="address" />
+            id="address" 
+            [formControl]="address"/>
+            <div [hidden]="address.valid || address.untouched">
+                Hay un problema con tu dirección
+                <div [hidden]="!address.hasError('required')">
+                    La dirección es obligatoria
+                </div>
+            </div>
             <br/>
             <label for="province">Provincia:</label>
             <input type="text"
             name="province"
-            id="province" />
+            id="province" 
+            [formControl]="province"/>
+            <div [hidden]="province.valid || province.untouched">
+                Hay un problema con tu provincia
+                <div [hidden]="!province.hasError('required')">
+                    La provincia es obligatoria
+                </div>
+            </div>
             <br/>
             <label for="city">Ciudad:</label>
             <input type="text"
             name="city"
-            id="city" />
+            id="city"
+            [formControl]="city" />
+            <div [hidden]="city.valid || city.untouched">
+                Hay un problema con tu ciudad
+                <div [hidden]="!city.hasError('required')">
+                    La ciudad es obligatoria
+                </div>
+            </div>
             <br/>
             
-            <label>Sobre mi:</label>
+            <label for="about">Sobre mi:</label>
             
-              <textarea name="" id="" cols="30" rows="5"></textarea>
-        
+              <textarea name="about" id="about" cols="30" rows="5" ></textarea>
             <br/>
             <label>Otras competencias:</label>
-              <textarea name="" id="" cols="30" rows="5"></textarea>
-
+              <textarea name="other" id="other" cols="30" rows="5"></textarea>
             <br/>
             <button type="submit" [disabled]="!userForm.valid">Guardar</button>   
     </form>

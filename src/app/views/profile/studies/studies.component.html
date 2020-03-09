@@ -2,14 +2,68 @@
     <h1>Datos académicos</h1>
     <div>
         <form [formGroup]="studiesForm" (ngSubmit)="update()">
-            <label for="title">Tipo de título</label>
+            <h2 for="title">Tipo de título</h2>
             <select id="title">
                 <option value="uni">Título universitario</option>
                 <option value="cf">Ciclo formativo</option>
                 <option value="otro">Otro título</option>
             </select>
             <br/>
-            <label for="title">Opciones </label>
+            <h2>Opciones del título universitario </h2>
+            <label for="school">Centro educativo:</label>   
+            <input type="text"
+            name="school"
+            id="school"/>
+            <br/>
+            <label for="title">Titulo:</label>
+            <input type="text"
+            name="title"
+            id="title" />
+            <br/>
+            <label for="date">Fecha del título</label>
+            <input type="date"
+            name="date"
+            id="date" />
+            <br/>
+            <label for="radio">Titulación bilingüe?</label>
+            <br/>
+            <input type="radio" id="si" name="bilingue" value="si">
+            <label for="si">Es bilingüe</label>
+            <input type="radio" id="no" name="bilingue" value="no">
+            <label for="no">No es bilingüe</label><br>
+
+            <label for="certificate">Sube tu certificado:</label>
+            <input type="file" name="certificado" id="certficicate" />
+            <br/>
+
+            <h2>Opciones del ciclo formatico </h2>
+            <label for="school">Centro educativo:</label>   
+            <input type="text"
+            name="school"
+            id="school"/>
+            <br/>
+            <label for="title">Titulo:</label>
+            <input type="text"
+            name="title"
+            id="title" />
+            <br/>
+            <label for="date">Fecha del título</label>
+            <input type="date"
+            name="date"
+            id="date" />
+            <br/>
+            <label for="radio">Titulación bilingüe?</label>
+            <br/>
+            <input type="radio" id="si" name="bilingue" value="si">
+            <label for="si">Es bilingüe</label>
+            <input type="radio" id="no" name="bilingue" value="no">
+            <label for="no">No es bilingüe</label><br>
+
+            <label for="certificate">Sube tu certificado:</label>
+            <input type="file" name="certificado" id="certficicate" />
+            <br/>
+            
+
         </form>
     </div>        
 </section>

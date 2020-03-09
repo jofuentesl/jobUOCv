@@ -9,8 +9,11 @@ function replaceAll( input: FormControl) {
 
 /*pasaporte /^[a-z]{3}[0-9]{6}[a-z]?$/i
   DNI   
-
 */
+function isDate(c: FormControl) {
+    const dateRegEx = new RegExp(/^(\d{2}|\d{1})\/(\d{2}|\d{1})\/\d{4}$/);
+    return dateRegEx.test(c.value) ? null : {date: true };
+  }
 
 @Component({
   selector: 'app-student',
@@ -28,16 +31,25 @@ export class StudentComponent implements OnInit {
                                       Validators.minLength(3),
                                       Validators.maxLength(55),
                                       Validators.pattern('^[a-zA-Z]+$')]);
-    phone      = new FormControl('', [Validators.pattern('^[0-9]*$')]);
-    phone2     = new FormControl('', [Validators.pattern('^[0-9]*$')]);
+    dates      = new FormControl('', [Validators.required, isDate]);
+    phone      = new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]);
+    phone2     = new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]);
 
     n_document = new FormControl('', [Validators.required]);
+    address    = new FormControl('', [Validators.required]);
+    province   = new FormControl('', [Validators.required]);
+    city       = new FormControl('', [Validators.required]);
+
     userForm: FormGroup = this.formBuilder.group({
       name:       this.name,
       surename:   this.surename,
+      dates:      this.dates,
       phone:      this.phone,
       phone2:     this.phone2,
-      n_document: this.n_document
+      n_document: this.n_document,
+      address:    this.address,
+      province:   this.province,
+      city:       this.city
     });
   constructor(private formBuilder: FormBuilder) { }
 
