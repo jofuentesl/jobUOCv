@@ -15,6 +15,10 @@ function isDate(c: FormControl) {
     return dateRegEx.test(c.value) ? null : {date: true };
   }
 
+function idDocument(g: FormControl) {
+    return g.get('password').value === g.get('passwordRepeat').value
+       ? null : {'mismatch': true};
+ }
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
