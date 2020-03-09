@@ -9,7 +9,7 @@ import { StudiesComponent } from './studies/studies.component';
 import { LanguagesComponent } from './languages/languages.component';
 
 @NgModule({
-  declarations: [ProfileComponent,  StudiesComponent, LanguagesComponent],
+  declarations: [ProfileComponent, LanguagesComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule,

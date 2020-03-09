@@ -1,1 +1,15 @@
-<p>studies works!</p>
+<section>
+    <h1>Datos académicos</h1>
+    <div>
+        <form [formGroup]="studiesForm" (ngSubmit)="update()">
+            <label for="title">Tipo de título</label>
+            <select id="title">
+                <option value="uni">Título universitario</option>
+                <option value="cf">Ciclo formativo</option>
+                <option value="otro">Otro título</option>
+            </select>
+            <br/>
+            <label for="title">Opciones </label>
+        </form>
+    </div>        
+</section>

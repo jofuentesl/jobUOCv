@@ -2,20 +2,122 @@
 <h1>Datos personales</h1>
 <div>
     <form [formGroup]="userForm" (ngSubmit)="update()">
-        <label for="name">Nombre</label>
+        <label for="name">Nombre:</label>
         <input type="text" 
             name="name" 
             id="name" 
             [formControl]="name">
-            <div [hidden]="name.valid || name.untouched">
-            <div>
-                Hay un error en tu email
+                <div [hidden]="name.valid || name.untouched">
+                <div>
+                    Hay un error en tu nombre
+                </div>
+                <div [hidden]="!name.hasError('required')">
+                    El campo nombre es obligatorio.
+                </div>
+                <div [hidden]="!name.hasError('minlength')">
+                    El nombre debe tener mas de 3 carácteres
+                </div>
+                <div [hidden]="!name.hasError('maxlength')">
+                    El nombre no debe tener mas de 55 carácteres
+                </div>
+                <div [hidden]="!name.hasError('pattern')">
+                    El formato del nombre, no es correcto. Hay espacios en blanco
+                </div>
             </div>
-            <div [hidden]="!name.hasError('required')">
-                El campo nombre es obligatorio.
+            <br/>
+        <label for="surename">Apellidos:</label>    
+        <input type="text"
+            name="surename"
+            id="surename"
+            [formControl]="surename" />
+            <div [hidden]="surename.valid || surename.untouched">
+                <div>
+                    Hay un error con tus apellidos
+                </div>
+                <div [hidden]="!surename.hasError('required')">
+                    El campo apellidos es obligatorio
+                </div>
+                <div [hidden]="!surename.hasError('minlength')">
+                    El apellido debe tener mas de 3 carácteres
+                </div>
+                <div [hidden]="!surename.hasError('maxlength')">
+                    El apellido no debe tener mas de 55 carácteres
+                </div>
+                <div [hidden]="!surename.hasError('pattern')">
+                    El formato del apellido, no es correcto. Hay espacios en blanco
+                </div>
             </div>
+            <br/>
+        <label for="avatar">Sube tu fotografia:</label>
+        <input type="file" name="avatar" id="avatar" />
             
-            </div>
+            <br/>
+        <label for="date"> Fecha de nacimiento:</label>
+        <input type="date"
+            name="date"
+            id="date"/>    
+            <br/>
+            <label for="phone"> Teléfono:</label>
+        <input type="tel"
+            name="phone"
+            id="phone" 
+            [formControl]="phone"/>
+            <div [hidden]="phone.valid || phone.untouched">
+                <div [hidden]="!phone.hasError('pattern')">
+                    El formato del telefono, debe ser numérico.
+                </div>
+            </div> 
+            <br/>
+            <label for="phone2"> Teléfono alternativo:</label>
+            <input type="tel"
+            name="phone2"
+            id="phone2" 
+            [formControl]="phone2"/>
+            <div [hidden]="phone2.valid || phone2.untouched">
+                <div [hidden]="!phone2.hasError('pattern')">
+                    El formato del telefono, debe ser numérico.
+                </div>
+            </div> 
+            <br/>
+            <label for="document"> Tipo de documento:</label>
+            <select id="document">
+                <option value="NIF">NIF</option>
+                <option value="NIE">NIE</option>
+                <option value="Pasaporte">Pasaporte</option>
+                <option value="Otro">Otro</option>
+            </select>
+            <br/>
+            <label for="n_document"> Número documento:</label>
+            <input type="text"
+            name="n_document"
+            id="n_document"
+            [formControl] = "n_document" />
+            <br/>
+            <label for="address">Dirección:</label>
+            <input type="text"
+            name="address"
+            id="address" />
+            <br/>
+            <label for="province">Provincia:</label>
+            <input type="text"
+            name="province"
+            id="province" />
+            <br/>
+            <label for="city">Ciudad:</label>
+            <input type="text"
+            name="city"
+            id="city" />
+            <br/>
+            
+            <label>Sobre mi:</label>
+            
+              <textarea name="" id="" cols="30" rows="5"></textarea>
+        
+            <br/>
+            <label>Otras competencias:</label>
+              <textarea name="" id="" cols="30" rows="5"></textarea>
+
+            <br/>
             <button type="submit" [disabled]="!userForm.valid">Guardar</button>   
     </form>
 </div>

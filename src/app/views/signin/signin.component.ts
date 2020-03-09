@@ -7,7 +7,7 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 
 /*Expresión regular para verificar el email*/
 
-function isEmail(input: FormControl){
+function isEmail(input: FormControl) {
   const expresion = new RegExp("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
   return (expresion.test(input.value)) ? null : {validateEmail: true} ;
 }
@@ -21,29 +21,28 @@ function isEmail(input: FormControl){
 
 export class SigninComponent implements OnInit {
 
-  currentUser : User[] = [];
+  currentUser: User[] = [];
 
   /*Variables para validar el formulario de login*/
-  email     = new FormControl('',[Validators.required, isEmail])
-  password  = new FormControl('',[Validators.required])
+  email     = new FormControl('', [Validators.required, isEmail]);
+  password  = new FormControl('', [Validators.required]);
 
   loginForm: FormGroup = this.formBuilder.group({
     email: this.email,
     password: this.password
   });
 
-  constructor(private dataService: DataService, 
-              private signinService: SigninService, 
+  constructor(private dataService: DataService,
+              private signinService: SigninService,
               private formBuilder: FormBuilder) { }
   signin() {
-    this.signinService.login({...this.loginForm.value })
+    this.signinService.login({...this.loginForm.value });
     }
-  
   ngOnInit() {
-    this.dataService.getUsers().subscribe((data : any[])=>{
+    this.dataService.getUsers().subscribe((data: any[]) => {
       console.log(data);
       this.currentUser = data;
-      return this.currentUser.map(res => {console.log(res.email)})
-      })
-}
+      return this.currentUser.map(res => {console.log(res.email); });
+      });
+  }
 }

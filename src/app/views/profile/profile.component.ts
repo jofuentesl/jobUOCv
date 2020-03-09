@@ -12,12 +12,13 @@ export class ProfileComponent implements OnInit {
 
   currentUser: User[] = [];
 
-  constructor( private dataService : DataService) { }
+  constructor( private dataService: DataService) { }
 
   ngOnInit() {
     const user = this.dataService.getUsers().subscribe(data => {
       this.currentUser = data;
-      return this.currentUser.map(res => {res});
+
+      /*return this.currentUser.map(res => { res });*/
     }
-  )}
+  ); }
 }
