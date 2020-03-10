@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../../shared/services/data.service';
+import { User } from '../../../shared/models/user.model';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 /*Expresion regular para quitar espacios en blanco
@@ -8,7 +10,7 @@ function replaceAll( input: FormControl) {
 }*/
 
 /*pasaporte /^[a-z]{3}[0-9]{6}[a-z]?$/i
-  DNI   
+  DNI
 */
 function isDate(c: FormControl) {
     const dateRegEx = new RegExp(/^(\d{2}|\d{1})\/(\d{2}|\d{1})\/\d{4}$/);
@@ -55,7 +57,7 @@ export class StudentComponent implements OnInit {
       province:   this.province,
       city:       this.city
     });
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private dataService: DataService, private formBuilder: FormBuilder) { }
 
     update() {
       console.log(' hola ');

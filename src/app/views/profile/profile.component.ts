@@ -18,6 +18,10 @@ export class ProfileComponent implements OnInit {
     const user = this.dataService.getUsers().subscribe(data => {
       this.currentUser = data;
 
+      this.dataService.getUser(2).subscribe( data => {
+      console.log(data);
+    });
+
       /*return this.currentUser.map(res => { res });*/
     }
   ); }
