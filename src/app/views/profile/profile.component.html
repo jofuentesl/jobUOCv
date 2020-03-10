@@ -6,26 +6,26 @@
 <div class="datos_estudiante">
   <div class="datos_personales">
   <h2>Datos personales</h2>
-    <table *ngFor="let user of currentUsers">
+    <table>
       <tr>
         <td>Nombre:</td>
-        <td>{{user.name}}</td>
+        <td>{{currentUser.name}}</td>
       </tr>
-      <!--<tr>
+      <tr>
         <td>Apellidos:</td>
-        <td>{{user.surname}}</td>
+        <td>{{currentUser.surname}}</td>
       </tr>
       <tr>
         <td>Fecha de nacimiento:</td>
-        <td>{{user.birthdate}}</td>
+        <td>{{currentUser.birthdate}}</td>
       </tr>
       <tr>
         <td>Teléfono:</td>
-        <td>{{user.phone}}</td>
+        <td>{{currentUser.phone}}</td>
       </tr>
       <tr>
         <td>Tipo documento:</td>
-        <td>{{user.documentType.name}}</td>
+        <td>{{currentUser.documentType.name}}</td>
             
       </tr>
       <tr>
@@ -35,46 +35,45 @@
       <tr>
         <td>Sobre mi:</td>
         <td>
-          <textarea name="" id="" cols="30" rows="5">{{user.aboutMe}}</textarea>
+          <textarea name="" id="" cols="30" rows="5">{{currentUser.aboutMe}}</textarea>
         </td>
       </tr>
       <tr>
         <td>Otras competencias:</td>
         <td>
-          <textarea name="" id="" cols="30" rows="5">{{user.otherCompetences}}</textarea>
+          <textarea name="" id="" cols="30" rows="5">{{currentUser.otherCompetences}}</textarea>
         </td>
       </tr>
       <tr>
         <td>Permiso de conducir:</td>
-        <td>{{user.license}}</td>
+        <td>{{currentUser.license}}</td>
       </tr>
       <tr>
         <td>Dirección:</td>
-        <td>{{user.address.street}}</td>
-        <td>{{user.address.province.name}}</td>
-      </tr>-->
+        <td>{{currentUser.address.street}}</td>
+        <td>{{currentUser.address.province.name}}</td>
+      </tr>
     </table>
-    <!--
-  <button routerLink="/admin/profile/1/student">Actualizar</button>
+    
+  <button routerLink="/admin/profile/student">Actualizar</button>
 </div>
 <div class="datos_formacion">  
 <h2>Formación académica</h2> 
-      <table *ngFor="let title of user.studies">
+      <table *ngFor="let title of currentUser.studies">
       <td>{{title.level.name}}</td>
       <td>{{title.title.name}}</td>
       <td>{{title.institution.name}}</td>
       <td>{{title.date}}</td>
       </table>
-<button routerLink="/admin/profile/`{{user.id}}`/studies">Actualizar</button>
+<button routerLink="/admin/profile/`{{currentUser.id}}`/studies">Actualizar</button>
 </div>
 <div class="datos_idiomas">  
   <h2>Idiomas</h2>
-  <table *ngFor="let language of user.languages">
+  <table *ngFor="let language of currentUser.languages">
     <td>{{language.level.name}}</td>
     <td>{{language.name.name}}</td>
     <td>{{language.date}}</td>
   </table> 
-  <button routerLink="/admin/profile/`{{user.id}}`/languages">Actualizar</button>
+  <button routerLink="/admin/profile/`{{currentUser.id}}`/languages">Actualizar</button>
 </div>  
 </div>
--->
