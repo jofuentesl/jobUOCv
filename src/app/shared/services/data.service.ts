@@ -27,8 +27,8 @@ export class DataService {
       this.currentUser = data)
       ); }
 
-  getUser(id: any): Observable<any> {
-      return this.httpClient.get(`${this.SERVER_URL2}` + id).pipe(
-          map(this.extractData));
-      }
+  getUser(id: any): Observable<any[]> {
+      return this.httpClient.get<any[]>(`${this.SERVER_URL2}` + id).pipe(tap(data =>
+        this.currentUser = data)
+      ); }
 }

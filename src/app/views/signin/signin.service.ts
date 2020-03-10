@@ -9,19 +9,19 @@ import { DataService } from '../../shared/services/data.service';
 export class SigninService {
 
   currentUser: User[] = [];
-  currentId: void[] = [];
-  constructor( private dataService:DataService,
-               private router:Router) { }
+  constructor( private dataService: DataService,
+               private router: Router ) { }
 
   login({ email, password }) {
     const user = this.dataService.getUsers().subscribe(data => {
       this.currentUser = data;
-      if(this.currentUser.find(n => n.email== email && n.password == password )){
-
-      this.router.navigate(['/admin/profile']);
-      }else{
-        alert("El usuario o la contraseña no son correctos")
-      };
+      this.currentUser.find(n => { if (n.email === email && n.password === password ) {
+        return this.router.navigate(['/admin/profile', n.id] );
+      } else {
+        alert('Usuario o contraseña equivocadas');
+        this.router.navigate(['']);
+      }
+    });
     });
   }
-} 
+}

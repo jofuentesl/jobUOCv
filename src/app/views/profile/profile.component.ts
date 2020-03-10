@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../shared/services/data.service';
+import { ActivatedRoute } from '@angular/router';
 import { User } from '../../shared/models/user.model';
-import { FakeBackendService } from '../../shared/inmemory-db/inmemory-db.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -11,18 +12,18 @@ import { FakeBackendService } from '../../shared/inmemory-db/inmemory-db.service
 export class ProfileComponent implements OnInit {
 
   currentUser: User[] = [];
+  currentUsers: User[] = [];
+  constructor( private dataService: DataService,
+               private route: ActivatedRoute ) { }
 
-  constructor( private dataService: DataService) { }
-
-  ngOnInit() {
+ 
+ngOnInit() {
+    const idUser = this.route.snapshot.paramMap.get('id');
     const user = this.dataService.getUsers().subscribe(data => {
       this.currentUser = data;
-
-      this.dataService.getUser(2).subscribe( data => {
-      console.log(data);
+      const userunique =  this.dataService.getUser(idUser).subscribe(data => {
+      this.currentUsers = data;
     });
-
-      /*return this.currentUser.map(res => { res });*/
     }
   ); }
-}
+ }

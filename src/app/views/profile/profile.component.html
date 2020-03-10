@@ -3,15 +3,15 @@
 <div class="img"> 
   <img src='/assets/img/estudiante.png' alt="Foto estudiante">
 </div>
-<div class="datos_estudiante" *ngFor="let user of currentUser">
+<div class="datos_estudiante">
   <div class="datos_personales">
   <h2>Datos personales</h2>
-    <table >
+    <table *ngFor="let user of currentUsers">
       <tr>
         <td>Nombre:</td>
         <td>{{user.name}}</td>
       </tr>
-      <tr>
+      <!--<tr>
         <td>Apellidos:</td>
         <td>{{user.surname}}</td>
       </tr>
@@ -52,9 +52,10 @@
         <td>Dirección:</td>
         <td>{{user.address.street}}</td>
         <td>{{user.address.province.name}}</td>
-      </tr>
+      </tr>-->
     </table>
-  <button routerLink="/admin/profile/student">Actualizar</button>
+    <!--
+  <button routerLink="/admin/profile/1/student">Actualizar</button>
 </div>
 <div class="datos_formacion">  
 <h2>Formación académica</h2> 
@@ -64,7 +65,7 @@
       <td>{{title.institution.name}}</td>
       <td>{{title.date}}</td>
       </table>
-<button routerLink="/admin/profile/studies">Actualizar</button>
+<button routerLink="/admin/profile/`{{user.id}}`/studies">Actualizar</button>
 </div>
 <div class="datos_idiomas">  
   <h2>Idiomas</h2>
@@ -73,6 +74,7 @@
     <td>{{language.name.name}}</td>
     <td>{{language.date}}</td>
   </table> 
-  <button routerLink="/admin/profile/languages">Actualizar</button>
+  <button routerLink="/admin/profile/`{{user.id}}`/languages">Actualizar</button>
 </div>  
 </div>
+-->
