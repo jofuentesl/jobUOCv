@@ -11,24 +11,26 @@ import { Observable } from 'rxjs';
 export class DataService {
 
   /*Variable para guardar datos usuario*/
-  currentUser: User[] = [];
+  currentUser: User;
 
   SERVER_URL = 'http://localhost:4200/api/';
   SERVER_URL2 = 'http://localhost:4200/api/users/';
 
-  constructor( private httpClient: HttpClient ) { }
+  constructor(  private httpClient: HttpClient ) { }
 
-  private extractData(res: Response) {
-    let body = res;
-    return body || { };
-  }
-  getUsers(): Observable<any[]> {
-    return this.httpClient.get<any[]>(`${this.SERVER_URL}users`).pipe(tap(data =>
+
+  getUsers(): Observable<any> {
+    return this.httpClient.get<any>(`${this.SERVER_URL}users`).pipe(tap(data =>
       this.currentUser = data)
       ); }
 
-  getUser(id: any): Observable<any[]> {
-      return this.httpClient.get<any[]>(`${this.SERVER_URL2}` + id).pipe(tap(data =>
+  getUser(id: any): Observable<any> {
+      return this.httpClient.get<any>(`${this.SERVER_URL2}` + id).pipe(tap(data =>
         this.currentUser = data)
       ); }
+  updateUser( user: any): Observable<any> {
+    return this.httpClient.put<any>(`${this.SERVER_URL2}`, {...user}).pipe(
+      map(() => user)
+    );
+  }
 }

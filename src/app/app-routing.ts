@@ -52,7 +52,7 @@ export const rootRouterConfig: Routes = [
         data: { title: 'Favorites', breadcrumb: 'FAVORITES' }
       },
       {
-        path: 'profile/:id',
+        path: 'profile',
         loadChildren: () =>
           import('./views/profile/profile.module').then(
             m => m.ProfileModule

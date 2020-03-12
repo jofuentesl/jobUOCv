@@ -114,7 +114,7 @@ export class FakeBackendService implements InMemoryDbService {
           }
         ]
      */
-      },
+      }/*,
       {
         id: 2,
         username: 'jordi',
@@ -225,7 +225,7 @@ export class FakeBackendService implements InMemoryDbService {
           }
         ]
      */
-      }
+    /*  }*/
     ];
 
     const offers: any[] = [

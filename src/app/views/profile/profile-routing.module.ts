@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ProfileComponent
   },
   {
-  path: 'student',
+  path: 'student/:id',
   loadChildren: () =>
     import('./student/student.module').then(m => m.StudentModule),
   data: { title: 'Student' }

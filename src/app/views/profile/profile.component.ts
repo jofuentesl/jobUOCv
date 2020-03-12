@@ -11,20 +11,21 @@ import { User } from '../../shared/models/user.model';
 })
 export class ProfileComponent implements OnInit {
 
-  currentUsers: User[] = [];
-  currentUser: any = [];
+  currentUser: User;
+  
   constructor( private dataService: DataService,
                private route: ActivatedRoute ) { }
 
 ngOnInit() {
-    const idUser = this.route.snapshot.paramMap.get('id');
     const user = this.dataService.getUsers().subscribe(data => {
-      this.currentUsers = data;
-      const userunique =  this.dataService.getUser(idUser).subscribe(data => {
       this.currentUser = data;
+      /*console.log(this.currentUser);*/
+      /*const userunique =  this.dataService.getUser(idUser).subscribe(data => {
+      this.currentUser = data;
+    });*/
+
     });
-    }
-  ); }
+  }
  }
 
  

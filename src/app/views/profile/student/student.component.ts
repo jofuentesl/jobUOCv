@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../shared/services/data.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../shared/models/user.model';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
@@ -28,6 +29,8 @@ function idDocument(g: FormControl) {
 })
 export class StudentComponent implements OnInit {
 
+  currentUser: User;
+
   /*Variables para validar el formulario del perfil*/
     name       = new FormControl('', [Validators.required,
                                       Validators.minLength(3),
@@ -41,8 +44,11 @@ export class StudentComponent implements OnInit {
     phone      = new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]);
     phone2     = new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]);
 
+    // tslint:disable-next-line: variable-name
     n_document = new FormControl('', [Validators.required]);
-    address    = new FormControl('', [Validators.required]);
+    // tslint:disable-next-line: variable-name
+    no_document = new FormControl('', [Validators.required]);
+    street    = new FormControl('', [Validators.required]);
     province   = new FormControl('', [Validators.required]);
     city       = new FormControl('', [Validators.required]);
 
@@ -53,17 +59,46 @@ export class StudentComponent implements OnInit {
       phone:      this.phone,
       phone2:     this.phone2,
       n_document: this.n_document,
-      address:    this.address,
+      street:    this.street,
       province:   this.province,
       city:       this.city
     });
-  constructor(private dataService: DataService, private formBuilder: FormBuilder) { }
 
-    update() {
-      console.log(' hola ');
-    }
+  constructor(
+              private dataService: DataService,
+              private formBuilder: FormBuilder,
+              private route: ActivatedRoute,
+              private router: Router) { }
+
+    updateUser() {
+      const idUser = this.route.snapshot.paramMap.get('id');
+      this.dataService.getUser(idUser).subscribe(data => {
+        this.currentUser = data;
+        console.log(this.currentUser);
+        this.currentUser.name = this.userForm.value.name;
+        this.currentUser.surname = this.userForm.value.surename;
+        this.currentUser.birthdate = this.userForm.value.dates;
+        this.currentUser.phone = this.userForm.value.phone;
+        this.currentUser.phone2 = this.userForm.value.phone2;
+        this.currentUser.documentNumber = this.userForm.value.n_document;
+        this.currentUser.documentType = this.userForm.value.no_document;
+        this.currentUser.address.street = this.userForm.value.address;
+        this.currentUser.address.province = this.userForm.value.province;
+        this.currentUser.address.municipe = this.userForm.value.city;
+        this.currentUser.aboutMe = this.userForm.value.about;
+        this.currentUser.otherCompetences = this.userForm.value.other;
+        this.currentUser.license = 'hola';
+        this.dataService.updateUser(this.currentUser).subscribe(data1 => {
+          this.router.navigate(['/admin/profile']);
+        });
+      });
+}
 
   ngOnInit(): void {
+    const idUser = this.route.snapshot.paramMap.get('id');
+    // tslint:disable-next-line: deprecation
+    this.dataService.getUser(idUser).subscribe(data => {
+        this.currentUser = data;
+    });
   }
-
 }

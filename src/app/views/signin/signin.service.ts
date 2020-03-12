@@ -15,13 +15,13 @@ export class SigninService {
   login({ email, password }) {
     const user = this.dataService.getUsers().subscribe(data => {
       this.currentUser = data;
-      this.currentUser.find(n => { if (n.email === email && n.password === password ) {
-        return this.router.navigate(['/admin/profile', n.id] );
+      if(this.currentUser.find(n => n.email === email && n.password === password )){
+      /*this.currentUser.find(n => { if (n.email === email && n.password === password ) {*/
+        return this.router.navigate(['/admin/profile'/*, n.id*/] );
       } else {
         alert('Usuario o contraseña equivocadas');
         this.router.navigate(['']);
       }
-    });
     });
   }
 }
