@@ -1,7 +1,7 @@
 
 <h1>Datos personales</h1>
 <div >
-    <form [formGroup]="userForm" (ngSubmit)="updateUser()" >
+    <form [formGroup]="userForm" (ngSubmit)="updateUser()">
         <label for="name">Nombre:</label>
         <input type="text" 
             name="name" 
@@ -170,6 +170,22 @@
             <label>Otras competencias:</label>
               <textarea name="other" id="other" cols="30" rows="5"></textarea>
             <br/>
+            <label>
+                Permiso de conducir:
+                <select id="license"
+                    name="license"
+            id="license"
+            [formControl]="license">
+                <option value=""></option>
+                <option value="A1">A1</option>
+                <option value="A2">A2</option>
+                <option value="B1">B1</option>
+                <option value="Otro">Otro</option>
+            </select>
+            </label>    
+
+            <label>Dirección:
+            </label>
             <button type="submit" [disabled]="!userForm.valid">Guardar</button>   
     </form>
 </div>

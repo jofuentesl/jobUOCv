@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../../shared/services/data.service';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup , Validators , FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../../shared/models/user.model';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 /*Expresion regular para quitar espacios en blanco
 function replaceAll( input: FormControl) {
@@ -53,12 +54,13 @@ export class StudentDetailComponent implements OnInit {
     phone2     = new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]);
 
     // tslint:disable-next-line: variable-name
-    n_document = new FormControl('', [Validators.required]);
+    n_document  = new FormControl('', [Validators.required]);
     // tslint:disable-next-line: variable-name
     no_document = new FormControl('', [Validators.required]);
-    street    = new FormControl('', [Validators.required]);
-    province   = new FormControl('', [Validators.required]);
-    city       = new FormControl('', [Validators.required]);
+    street      = new FormControl('', [Validators.required]);
+    province    = new FormControl('', [Validators.required]);
+    city        = new FormControl('', [Validators.required]);
+    license     = new FormControl('', [Validators.required])
 
     userForm: FormGroup = this.formBuilder.group({
       name:       this.name,
@@ -67,9 +69,10 @@ export class StudentDetailComponent implements OnInit {
       phone:      this.phone,
       phone2:     this.phone2,
       n_document: this.n_document,
-      street:    this.street,
+      street:     this.street,
       province:   this.province,
-      city:       this.city
+      city:       this.city,
+      license:    this.license
     });
 
 
@@ -77,7 +80,6 @@ export class StudentDetailComponent implements OnInit {
       const idUser = this.route.snapshot.paramMap.get('id');
       this.dataService.getUser(idUser).subscribe(data => {
         this.currentUser = data;
-        console.log(this.currentUser);
         this.currentUser.name = this.userForm.value.name;
         this.currentUser.surname = this.userForm.value.surename;
         this.currentUser.birthdate = this.userForm.value.dates;
@@ -90,7 +92,7 @@ export class StudentDetailComponent implements OnInit {
         this.currentUser.address.municipe = this.userForm.value.city;
         this.currentUser.aboutMe = this.userForm.value.about;
         this.currentUser.otherCompetences = this.userForm.value.other;
-        this.currentUser.license = 'hola';
+        this.currentUser.license = this.userForm.value.license;
         this.dataService.updateUser(this.currentUser).subscribe(data1 => {
           this.router.navigate(['/admin/profile']);
         });
@@ -101,7 +103,7 @@ export class StudentDetailComponent implements OnInit {
   const idUser = this.route.snapshot.paramMap.get('id');
     // tslint:disable-next-line: deprecation
   this.dataService.getUser(idUser).subscribe(data => {
-        this.currentUser = data;
+        console.log(this.currentUser = data);
     });
   }
 }

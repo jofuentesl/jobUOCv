@@ -22,7 +22,7 @@ import { AdminLayoutComponent } from './components/layouts/admin-layout/admin-la
 
 
 
-const classesToInclude = [AppComfirmComponent, AdminLayoutComponent ];
+const classesToInclude = [AppComfirmComponent, AdminLayoutComponent];
 
 @NgModule({
   imports: [CommonModule,
