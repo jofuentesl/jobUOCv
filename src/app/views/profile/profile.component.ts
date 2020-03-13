@@ -12,7 +12,6 @@ import { User } from '../../shared/models/user.model';
 export class ProfileComponent implements OnInit {
 
   currentUser: User;
-  
   constructor( private dataService: DataService,
                private route: ActivatedRoute ) { }
 
@@ -27,5 +26,3 @@ ngOnInit() {
     });
   }
  }
-
- 

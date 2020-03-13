@@ -7,6 +7,7 @@ import { StudentRoutingModule } from './student-routing.module';
 
 
 
+
 @NgModule({
   declarations: [StudentComponent],
   imports: [

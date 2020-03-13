@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 /*
@@ -23,12 +22,13 @@ import { AdminLayoutComponent } from './components/layouts/admin-layout/admin-la
 
 
 
-const classesToInclude = [AppComfirmComponent, AdminLayoutComponent];
+const classesToInclude = [AppComfirmComponent, AdminLayoutComponent ];
 
 @NgModule({
   imports: [CommonModule,
+            RouterModule,
             FormsModule,
-            RouterModule, ReactiveFormsModule
+            ReactiveFormsModule
           ],
 
   providers: [AppConfirmService],
