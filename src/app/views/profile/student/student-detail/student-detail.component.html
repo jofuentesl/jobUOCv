@@ -3,6 +3,7 @@
 <div >
     <form [formGroup]="userForm" (ngSubmit)="updateUser()">
         <label for="name">Nombre:</label>
+
         <input type="text" 
             name="name" 
             id="name" 
@@ -113,10 +114,7 @@
             <div [hidden]="n_document.valid || n_document.untouched">
                 Hay un problema con la selección de tu documento
                 <div [hidden]="!n_document.hasError('required')">
-                    El teléfono es obligatorio
-                </div>
-                <div [hidden]="!n_document.hasError('pattern')">
-                    El formato del telefono, debe ser numérico.
+                    El tipo de documento es obligatorio
                 </div>
             </div> 
             <br/>
@@ -125,6 +123,12 @@
             name="no_document"
             id="no_document"
             [formControl] = "no_document" />
+            <div [hidden]="no_document.valid || no_document.untouched">
+                Hay un problema con el número de documento
+                <div [hidden]="!no_document.hasError('required')">
+                    El número de documento es obligatorio
+                </div>
+            </div> 
             <br/>
             <label for="street">Dirección:</label>
             <input type="text"
@@ -138,6 +142,7 @@
                 </div>
             </div>
             <br/>
+            
             <label for="province">Provincia:</label>
             <input type="text"
             name="province"
@@ -162,30 +167,44 @@
                 </div>
             </div>
             <br/>
-            
             <label for="about">Sobre mi:</label>
             
-              <textarea name="about" id="about" cols="30" rows="5" ></textarea>
+              <textarea name="about" id="about" cols="30" rows="5" [formControl]="about"> ></textarea>
+              <div [hidden]="about.valid || about.untouched">
+                Hay un problema con tu este campo
+                <div [hidden]="!about.hasError('required')">
+                    Este campo es obligatorio
+                </div>
+            </div>
             <br/>
             <label>Otras competencias:</label>
-              <textarea name="other" id="other" cols="30" rows="5"></textarea>
+              <textarea name="other" id="other" cols="30" rows="5" [formControl]="other"></textarea>
+              <div [hidden]="other.valid || other.untouched">
+                Hay un problema con tu este campo
+                <div [hidden]="!other.hasError('required')">
+                    Este campo es obligatorio
+                </div>
+            </div>
             <br/>
-            <label>
-                Permiso de conducir:
+            <label>Permiso de conducir:</label>
                 <select id="license"
-                    name="license"
-            id="license"
-            [formControl]="license">
-                <option value=""></option>
-                <option value="A1">A1</option>
-                <option value="A2">A2</option>
-                <option value="B1">B1</option>
-                <option value="Otro">Otro</option>
+                        name="license"
+                        id="license"
+                        [formControl]="license">
+                        <option value=""></option>
+                        <option value="A1">A1</option>
+                        <option value="A2">A2</option>
+                        <option value="B1">B1</option>
+                        <option value="Otro">Otro</option>
             </select>
-            </label>    
-
-            <label>Dirección:
-            </label>
+            <div [hidden]="license.valid || license.untouched">
+                Hay un problema con tu este campo
+                <div [hidden]="!license.hasError('required')">
+                    Este campo es obligatorio
+                </div>
+            </div>
+                
+            <br/>        
             <button type="submit" [disabled]="!userForm.valid">Guardar</button>   
     </form>
 </div>

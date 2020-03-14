@@ -11,19 +11,7 @@ const routes: Routes = [
   },
   {
   path: 'student/student-detail/:id', component: StudentDetailComponent
-},
-{
-path: 'studies',
-  loadChildren: () =>
-    import('./studies/studies.module').then(m => m.StudiesModule),
-  data: { title: 'Studies' }
-},
-{
-  path: 'languages',
-    loadChildren: () =>
-      import('./languages/languages.module').then(m => m.LanguagesModule),
-    data: { title: 'Languages' }
-  }
+}
 ];
 
 @NgModule({

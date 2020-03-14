@@ -32,6 +32,7 @@ function idDocument(g: FormControl) {
 export class StudentDetailComponent implements OnInit {
 
   currentUser: User;
+  
 
   constructor(
     private dataService: DataService,
@@ -60,7 +61,9 @@ export class StudentDetailComponent implements OnInit {
     street      = new FormControl('', [Validators.required]);
     province    = new FormControl('', [Validators.required]);
     city        = new FormControl('', [Validators.required]);
-    license     = new FormControl('', [Validators.required])
+    about       = new FormControl('', [Validators.required]);
+    other       = new FormControl('', [Validators.required]);
+    license     = new FormControl('', [Validators.required]);
 
     userForm: FormGroup = this.formBuilder.group({
       name:       this.name,
@@ -69,9 +72,12 @@ export class StudentDetailComponent implements OnInit {
       phone:      this.phone,
       phone2:     this.phone2,
       n_document: this.n_document,
+      no_document:this.no_document,
       street:     this.street,
       province:   this.province,
       city:       this.city,
+      about:      this.about,
+      other:      this.other,
       license:    this.license
     });
 
@@ -85,9 +91,9 @@ export class StudentDetailComponent implements OnInit {
         this.currentUser.birthdate = this.userForm.value.dates;
         this.currentUser.phone = this.userForm.value.phone;
         this.currentUser.phone2 = this.userForm.value.phone2;
-        this.currentUser.documentNumber = this.userForm.value.n_document;
-        this.currentUser.documentType = this.userForm.value.no_document;
-        this.currentUser.address.street = this.userForm.value.address;
+        this.currentUser.documentNumber = this.userForm.value.no_document;
+        this.currentUser.documentType.name = this.userForm.value.n_document;
+        this.currentUser.address.street = this.userForm.value.street;
         this.currentUser.address.province = this.userForm.value.province;
         this.currentUser.address.municipe = this.userForm.value.city;
         this.currentUser.aboutMe = this.userForm.value.about;
@@ -103,7 +109,7 @@ export class StudentDetailComponent implements OnInit {
   const idUser = this.route.snapshot.paramMap.get('id');
     // tslint:disable-next-line: deprecation
   this.dataService.getUser(idUser).subscribe(data => {
-        console.log(this.currentUser = data);
+      return this.currentUser = data;
     });
   }
 }

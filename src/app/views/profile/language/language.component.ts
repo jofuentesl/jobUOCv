@@ -16,5 +16,6 @@ export class LanguageComponent implements OnInit {
     // tslint:disable-next-line: deprecation
     const user = this.dataService.getUsers().subscribe(data => {
       this.currentUser = data;
-  };
+    });
+  }
 }
