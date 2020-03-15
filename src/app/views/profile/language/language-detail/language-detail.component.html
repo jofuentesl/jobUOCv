@@ -1,1 +1,66 @@
-<p>language-detail works!</p>
+<h1>Intoduce un nuevo idioma</h1>
+<form [formGroup]="languageForm" (ngSubmit)="createLanguage()">
+    <label for="idioma">Escoge idioma</label>
+    <select 
+    name="idioma" 
+    id="idioma"
+    [formControl]="idioma">
+        <option value=""></option>
+        <option value="GB">Inglés</option>
+        <option value="AL">Alemán</option>
+        <option value="RS">Ruso</option>
+        <option value="XN">Chino</option>
+        <option value="OT">Otro</option>
+    </select>
+    <div [hidden]="idioma.valid || idioma.untouched">
+        Hay un problema con el idioma
+        <div [hidden]="!idioma.hasError('required')">
+            El idioma es obligatorio
+        </div> 
+    </div> 
+        <br />
+    <input
+    type="text" 
+    name="otro" 
+    id="otro"
+    [formControl]="otro"/>
+    <div [hidden]="otro.valid || otro.untouched">
+        Hay un problema con el campo
+        <div [hidden]="!otro.hasError('pattern')">
+            Longitud mínima 3 y máxima 255
+        </div> 
+    </div>
+<br/>
+    <label for="nivel"> Nivel</label>
+        <select 
+        name="nivel" 
+        id="nivel"
+        [formControl]="nivel">
+            <option value="A1">A1</option>
+            <option value="A2">A2</option>
+            <option value="B1">B1</option>
+            <option value="B2">B2</option>
+            <option value="C1">C1</option>
+            <option value="C2">C2</option>
+        </select>
+        <div [hidden]="nivel.valid || nivel.untouched">
+            Hay un problema con el nivel
+            <div [hidden]="!otro.hasError('required')">
+                El nivel es obligatorio
+            </div> 
+        </div>    
+    <br/>
+    <label for="fecha">Fecha título</label>
+    <input type="date"
+    name="fecha"
+    id="fecha"
+    [formControl]="fecha">
+    <div [hidden]="nivel.valid || nivel.untouched">
+        Hay un problema con la fecha
+        <div [hidden]="!otro.hasError('required')">
+            La fecha es obligatoria
+        </div> 
+    </div>    
+    <br/>
+    <button type="submit" [disabled]="!languageForm.valid" routerLink="/admin/profile/">Añadir idioma</button>   
+</form>

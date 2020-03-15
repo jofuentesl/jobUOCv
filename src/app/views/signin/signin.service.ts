@@ -17,6 +17,7 @@ export class SigninService {
       this.currentUser = data;
       if(this.currentUser.find(n => n.email === email && n.password === password )){
       /*this.currentUser.find(n => { if (n.email === email && n.password === password ) {*/
+        sessionStorage.setItem("currentUser", JSON.stringify(this.currentUser));
         return this.router.navigate(['/admin/profile'/*, n.id*/] );
       } else {
         alert('Usuario o contraseña equivocadas');
