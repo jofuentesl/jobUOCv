@@ -1,3 +1,27 @@
-<p>
-  offers works!
-</p>
+<section>
+  <h1>Ofertas disponibles</h1>
+  <table>
+      <thead>
+          <tr>
+            <th>Puesto</th>
+            <th>Empresa</th>
+            <th>Familia profesional</th>
+            <th>Fecha</th>
+            <th>Provincia</th>
+          </tr>
+        </thead> 
+        <tbody *ngFor="let offer of currentOffer" >
+          <tr >
+            <td>{{offer.job.name}}</td>
+            <td>{{offer.company.name}}</td>
+            <td>{{offer.category.name}}</td>
+            <td>{{offer.date}}</td>
+            <td>{{offer.province.name}}</td>
+            <td>
+            <button class="btn_form"  routerLink="/admin/offers/offers-detail/{{offer.id}}">Detalles oferta
+            </button>
+            </td>
+          </tr>
+        </tbody>
+  </table>
+</section>

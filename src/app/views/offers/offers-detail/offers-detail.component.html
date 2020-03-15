@@ -1,1 +1,33 @@
-<p>offers-detail works!</p>
+<section>
+    <h1>Detalles de la oferta</h1>
+    <table>
+        <thead>
+            <tr>
+              <th>Empresa</th>
+              <th>Puesto</th>
+              <th>Descripción</th>
+              <th>Provincia</th>
+              <th>Municipio</th>
+              <th>Familia profesional</th> 
+              <th>Perfiles profesionales</th>
+            </tr>
+          </thead> 
+          <tbody>
+            <tr >
+              <td>{{currentOffer.company.name}}</td>
+              <td>{{currentOffer.job.name}}</td>
+              <td>{{currentOffer.job.description}}</td>
+              <td>{{currentOffer.province.name}}</td>
+              <td>{{currentOffer.municipe.name}}</td>
+              <td>{{currentOffer.category.name}}</td>
+              <td *ngFor="let title of currentOffer.title">
+                  {{title.name}}<br />
+              </td>
+              <td>
+              <button class="btn_form"  routerLink="/admin/offers/offers-student">Inscribirse
+              </button>
+              </td>
+            </tr>
+          </tbody>
+    </table>
+</section>
