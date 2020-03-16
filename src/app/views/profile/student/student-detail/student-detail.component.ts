@@ -20,7 +20,7 @@ function isDate(c: FormControl) {
 }
 
 function idDocument(g: FormControl) {
-  return g.get('password').value === g.get('passwordRepeat').value? null : {mismatch: true};
+  return g.get('password').value === g.get('passwordRepeat').value ? null : {mismatch: true};
 }
 
 @Component({
@@ -32,15 +32,6 @@ function idDocument(g: FormControl) {
 export class StudentDetailComponent implements OnInit {
 
   currentUser: User;
- 
-
-  constructor(
-    private dataService: DataService,
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router) { }
-
-   
 
   /*Variables para validar el formulario del perfil*/
     name       = new FormControl('', [Validators.required,
@@ -67,22 +58,34 @@ export class StudentDetailComponent implements OnInit {
     license     = new FormControl('', [Validators.required]);
 
     userForm: FormGroup = this.formBuilder.group({
-      name:       this.name,
-      surename:   this.surename,
-      dates:      this.dates,
-      phone:      this.phone,
-      phone2:     this.phone2,
-      n_document: this.n_document,
-      no_document:this.no_document,
-      street:     this.street,
-      province:   this.province,
-      city:       this.city,
-      about:      this.about,
-      other:      this.other,
-      license:    this.license
+      name:         this.name,
+      surename:     this.surename,
+      dates:        this.dates,
+      phone:        this.phone,
+      phone2:       this.phone2,
+      n_document:   this.n_document,
+      no_document:  this.no_document,
+      street:       this.street,
+      province:     this.province,
+      city:         this.city,
+      about:        this.about,
+      other:        this.other,
+      license:      this.license
     });
- 
-    
+
+    getUser() {
+      const idUser = this.route.snapshot.paramMap.get('id');
+      // tslint:disable-next-line: deprecation
+      this.dataService.getUser(idUser).subscribe(data => {
+        return console.log(this.currentUser = data);
+    });
+  }
+    constructor(
+      private dataService: DataService,
+      private formBuilder: FormBuilder,
+      private route: ActivatedRoute,
+      private router: Router) {
+    }
     updateUser() {
       const idUser = this.route.snapshot.paramMap.get('id');
       this.dataService.getUser(idUser).subscribe(data => {

@@ -15,26 +15,28 @@ export class DataService {
   /*Variable para guardar datos usuario*/
   currentUser: User;
   currentStudy: Study;
-  currentOffer : Offer;
+  currentOffer: Offer;
   testUser: User[] = [];
 
+  
   SERVER_URL = 'http://localhost:4200/api/';
   SERVER_URL2 = 'http://localhost:4200/api/users/';
   SERVER_URL3 = 'http://localhost:4200/api/offers/';
   SERVER_URL4 = 'http://localhost:4200/api/users/studies';
   constructor(  private httpClient: HttpClient ) { }
 
+ 
 
   getUsers(): Observable<any> {
     return this.httpClient.get<any>(`${this.SERVER_URL}users`).pipe(tap(data =>
       this.currentUser = data)
-    ); 
+    );
   }
 
   getUser(id: any): Observable<any> {
-    return this.httpClient.get<any>(`${this.SERVER_URL2}` + id).pipe(tap(data =>
-      this.currentUser = data)
-    ); 
+    return this.httpClient.get<any>(`${this.SERVER_URL2}` + id).pipe(
+      map(()  => this.currentUser)
+    );
   }
 
   updateUser( user: any): Observable<any> {
@@ -43,15 +45,21 @@ export class DataService {
     );
   }
   getStudy( uid: any): Observable<any> {
-    return this.httpClient.get<any>(`${this.SERVER_URL4}`+ uid).pipe(tap(data =>
-    this.currentStudy = data)
-    ); 
-  }
-  
-  deleteStudy(idUser:any, idStudy:any){
+    return this.httpClient.get<any>(`${this.SERVER_URL4}` + uid).pipe(
+      map(() => console.log(this.currentStudy))
+    );
   }
 
-  getOffers():Observable<any> {
+  updateStudy(study: any): Observable<any> {
+    return this.httpClient.put<any> (`${this.SERVER_URL2}`, {...study}).pipe(
+      map(() => study )
+    );
+  }
+
+  deleteStudy(idUser: any, idStudy: any) {
+  }
+
+  getOffers(): Observable<any> {
     return this.httpClient.get<any>(`${this.SERVER_URL}offers`).pipe(tap(data =>
       this.currentOffer = data)
       );
@@ -62,5 +70,4 @@ export class DataService {
       this.currentOffer = data)
       );
   }
-  
 }

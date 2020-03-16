@@ -1,12 +1,13 @@
 
 <h1>Datos personales</h1>
 <div >
-    <form [formGroup]="userForm" (ngSubmit)="updateUser()">
+    <form [formGroup]="userForm" (ngSubmit)="updateUser()" *ngFor="let user of currentUser">
         <label for="name">Nombre:</label>
 
         <input type="text" 
             name="name" 
             id="name"
+            
             [formControl]="name">
                 <div [hidden]="name.valid || name.untouched">
                 <div>
@@ -26,7 +27,7 @@
                 </div>
             </div>
             <br/>
-        <label for="surename">Apellidos:</label>    
+        <label for="surename">Apellidos:</label>   
         <input type="text"
             name="surename"
             id="surename"
@@ -207,4 +208,4 @@
             <br/>        
             <button type="submit" [disabled]="!userForm.valid">Guardar</button>   
     </form>
-</div>
+    

@@ -13,7 +13,7 @@ import { User } from '../../../shared/models/user.model';
 export class StudentComponent implements OnInit {
   currentUser: User;
   constructor( private dataService: DataService,
-               private route: ActivatedRoute ) { }
+               private route: ActivatedRoute ) {  }
 
 ngOnInit() {
   const user = this.dataService.getUsers().subscribe(data => {

@@ -16,7 +16,7 @@ export class LanguageDetailComponent implements OnInit {
   idioma  = new FormControl ('', Validators.required);
   otro    = new FormControl ('', Validators.pattern('d{3,255}$'));
   nivel   = new FormControl ('', Validators.required);
-  fecha   = new FormControl ('', Validators.required);                              
+  fecha   = new FormControl ('', Validators.required);
 
   languageForm: FormGroup = this.formBuilder.group({
     idioma: this.idioma,
@@ -29,9 +29,9 @@ export class LanguageDetailComponent implements OnInit {
                 private formBuilder: FormBuilder,
                 private route: ActivatedRoute,
                 private router: Router) { }
-  
-  createLanguage(){
-    console.log('hola');
+  createLanguage() {
+
+    
   }
     ngOnInit(): void {
   }
