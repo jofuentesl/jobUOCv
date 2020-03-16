@@ -1,15 +1,25 @@
 <section>
     <h1>Datos académicos</h1>
     <div>
-        <form (ngSubmit)="deleteStudy()">
+        <form [formGroup]="studyForm" (ngSubmit)="getSuty()">
             <h2 for="title">Tipo de título</h2>
-            <select id="title">
+            <select id="title"
+                    name="title"
+                    [formControl]="title">
                 <option value="uni">Título universitario</option>
                 <option value="cf">Ciclo formativo</option>
                 <option value="otro">Otro título</option>
             </select>
+            <div [hidden]="title.valid || title.untouched">
+                <div>
+                    Hay un problema con este campo
+                </div>
+                <div [hidden]="title.hasError('required')">
+                    Este campo es obligatorio
+                </div>
+            </div>
             <br/>
-            <h2>Opciones del título universitario </h2>
+            <h2 *ngIf="">Opciones del título universitario </h2>
             <label for="school">Centro educativo:</label>   
             <input type="text"
             name="school"

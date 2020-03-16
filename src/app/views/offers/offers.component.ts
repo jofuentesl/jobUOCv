@@ -11,10 +11,13 @@ export class OffersComponent implements OnInit {
   currentOffer: Offer;
 
   constructor( private dataService: DataService) { }
-
+  
+  
+  
   ngOnInit() {
     this.dataService.getOffers().subscribe(data => {
       this.currentOffer = data;
+      
     });
   }
 }

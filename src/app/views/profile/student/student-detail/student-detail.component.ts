@@ -3,7 +3,7 @@ import { DataService } from '../../../../shared/services/data.service';
 import { FormBuilder, FormGroup , Validators , FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../../shared/models/user.model';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
+
 
 /*Expresion regular para quitar espacios en blanco
 function replaceAll( input: FormControl) {
@@ -20,9 +20,9 @@ function isDate(c: FormControl) {
 }
 
 function idDocument(g: FormControl) {
-  return g.get('password').value === g.get('passwordRepeat').value
-     ? null : {mismatch: true};
+  return g.get('password').value === g.get('passwordRepeat').value? null : {mismatch: true};
 }
+
 @Component({
   selector: 'app-student-detail',
   templateUrl: './student-detail.component.html',
@@ -32,7 +32,7 @@ function idDocument(g: FormControl) {
 export class StudentDetailComponent implements OnInit {
 
   currentUser: User;
-  
+ 
 
   constructor(
     private dataService: DataService,
@@ -40,6 +40,7 @@ export class StudentDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router) { }
 
+   
 
   /*Variables para validar el formulario del perfil*/
     name       = new FormControl('', [Validators.required,
@@ -80,8 +81,8 @@ export class StudentDetailComponent implements OnInit {
       other:      this.other,
       license:    this.license
     });
-
-
+ 
+    
     updateUser() {
       const idUser = this.route.snapshot.paramMap.get('id');
       this.dataService.getUser(idUser).subscribe(data => {

@@ -15,15 +15,25 @@ export class StudyDetailComponent implements OnInit {
   currentUser: User;
   currentStudy: Study;
 
+  title = new FormControl('', [Validators.required]);
+
+  studyForm: FormGroup = this.formBuilder.group({
+    title: this.title
+  });
+
   constructor(  private dataService: DataService,
                 private route: ActivatedRoute,
                 private router: Router,
                 private formBuilder: FormBuilder,
                 ) { }
 
+  getSuty(){
+    const idStudy = this.route.snapshot.paramMap.get('uid');
+  }
   updateStudy(){
     const idStudy = this.route.snapshot.paramMap.get('uid');
-    
+  }
+  addStudy(){
   }
 
   deleteStudy(){
@@ -31,5 +41,6 @@ export class StudyDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  
   }
 }

@@ -20,8 +20,8 @@ export class DataService {
 
   SERVER_URL = 'http://localhost:4200/api/';
   SERVER_URL2 = 'http://localhost:4200/api/users/';
-  SERVER_URL3 = 'http://localhost:4200/api/offers/'
-
+  SERVER_URL3 = 'http://localhost:4200/api/offers/';
+  SERVER_URL4 = 'http://localhost:4200/api/users/studies';
   constructor(  private httpClient: HttpClient ) { }
 
 
@@ -42,7 +42,10 @@ export class DataService {
       map(() => user)
     );
   }
-  getStudy( uid: any) {
+  getStudy( uid: any): Observable<any> {
+    return this.httpClient.get<any>(`${this.SERVER_URL4}`+ uid).pipe(tap(data =>
+    this.currentStudy = data)
+    ); 
   }
   
   deleteStudy(idUser:any, idStudy:any){

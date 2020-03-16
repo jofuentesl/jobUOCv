@@ -20,7 +20,7 @@ export class OffersDetailComponent implements OnInit {
   ngOnInit(): void {
       const idOffer= this.route.snapshot.paramMap.get('id');
       this.dataService.getOffer( idOffer ).subscribe(data=> {
-       console.log(this.currentOffer=data);
+       this.currentOffer= data;
       });
   }
 

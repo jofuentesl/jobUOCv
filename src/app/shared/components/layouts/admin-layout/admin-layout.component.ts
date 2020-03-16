@@ -9,6 +9,10 @@ export class AdminLayoutComponent implements OnInit {
 
   constructor() { }
 
+  deleteSession(){
+    sessionStorage.removeItem('currentUser');
+  }
+  
   ngOnInit() {
   }
 
