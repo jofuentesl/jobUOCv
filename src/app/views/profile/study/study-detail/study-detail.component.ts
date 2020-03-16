@@ -3,7 +3,7 @@ import { DataService } from '../../../../shared/services/data.service';
 import { User } from '../../../../shared/models/user.model';
 import { Study } from '../../../../shared/models/study.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'; 
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-study-detail',
@@ -27,20 +27,23 @@ export class StudyDetailComponent implements OnInit {
                 private formBuilder: FormBuilder,
                 ) { }
 
-  getSuty(){
+  getStudy() {
+    const idStudy = this.route.snapshot.paramMap.get('uid');
+    // tslint:disable-next-line: deprecation
+    this.dataService.getStudy(idStudy).subscribe(data => {
+      return console.log(this.currentStudy = data);
+  });
+}
+  updateStudy() {
     const idStudy = this.route.snapshot.paramMap.get('uid');
   }
-  updateStudy(){
-    const idStudy = this.route.snapshot.paramMap.get('uid');
-  }
-  addStudy(){
+  addStudy() {
   }
 
-  deleteStudy(){
+  deleteStudy() {
     const idStudy = this.route.snapshot.paramMap.get('uid');
   }
 
   ngOnInit(): void {
-  
   }
 }

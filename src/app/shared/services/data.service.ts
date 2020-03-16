@@ -18,14 +18,13 @@ export class DataService {
   currentOffer: Offer;
   testUser: User[] = [];
 
-  
+
   SERVER_URL = 'http://localhost:4200/api/';
   SERVER_URL2 = 'http://localhost:4200/api/users/';
   SERVER_URL3 = 'http://localhost:4200/api/offers/';
-  SERVER_URL4 = 'http://localhost:4200/api/users/studies';
+  SERVER_URL4 = 'http://localhost:4200/api/';
   constructor(  private httpClient: HttpClient ) { }
 
- 
 
   getUsers(): Observable<any> {
     return this.httpClient.get<any>(`${this.SERVER_URL}users`).pipe(tap(data =>
@@ -34,8 +33,9 @@ export class DataService {
   }
 
   getUser(id: any): Observable<any> {
-    return this.httpClient.get<any>(`${this.SERVER_URL2}` + id).pipe(
-      map(()  => this.currentUser)
+    return this.httpClient.get<any>(`${this.SERVER_URL2}` + id).pipe(tap(data =>
+      this.currentUser = data
+      )
     );
   }
 
@@ -44,9 +44,11 @@ export class DataService {
       map(() => user)
     );
   }
+
   getStudy( uid: any): Observable<any> {
-    return this.httpClient.get<any>(`${this.SERVER_URL4}` + uid).pipe(
-      map(() => console.log(this.currentStudy))
+    return this.httpClient.get<any>(`${this.SERVER_URL4}users/studies/uid=?` + uid).pipe(tap(data =>
+      this.currentStudy = data
+      )
     );
   }
 

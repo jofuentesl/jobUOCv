@@ -32,6 +32,12 @@ function idDocument(g: FormControl) {
 export class StudentDetailComponent implements OnInit {
 
   currentUser: User;
+  constructor(
+    private dataService: DataService,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router) {
+  }
 
   /*Variables para validar el formulario del perfil*/
     name       = new FormControl('', [Validators.required,
@@ -73,19 +79,14 @@ export class StudentDetailComponent implements OnInit {
       license:      this.license
     });
 
-    getUser() {
+  /*  getUser() {
       const idUser = this.route.snapshot.paramMap.get('id');
       // tslint:disable-next-line: deprecation
       this.dataService.getUser(idUser).subscribe(data => {
         return console.log(this.currentUser = data);
     });
-  }
-    constructor(
-      private dataService: DataService,
-      private formBuilder: FormBuilder,
-      private route: ActivatedRoute,
-      private router: Router) {
-    }
+  }*/
+
     updateUser() {
       const idUser = this.route.snapshot.paramMap.get('id');
       this.dataService.getUser(idUser).subscribe(data => {
@@ -108,12 +109,11 @@ export class StudentDetailComponent implements OnInit {
         });
       });
 }
-
   ngOnInit(): void {
   const idUser = this.route.snapshot.paramMap.get('id');
     // tslint:disable-next-line: deprecation
   this.dataService.getUser(idUser).subscribe(data => {
-      return this.currentUser = data;
+   console.log(this.currentUser = data);
     });
   }
 }
